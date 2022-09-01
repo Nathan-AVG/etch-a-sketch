@@ -5,24 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Etch-A-Sketch</title>
 </head>
 <body>
     <!--heading-->
     <div class="heading">Etch-A-Sketch</div>
     <!--main-->
-    <div class="left">
-        <div class="pallette"></div>
-        <div class="color"></div>
-        <div class="rainbow"></div>
-        <div class="eraser"></div>
-        <div class="clear"></div>
-    </div>
-    <div class="right">
-        <img src="./images/e6538ef9347787c.png.crdownload">
-        <div class="board-container"></div>
+    <div class="main">
+        <div class="left">
+            <div class="tools">
+                <div class="tool pallette">-</div>
+                <div class="tool color"><img src="./icons-etch/icons8-paint-palette-64.png" width="32"></div>
+                <div class="tool rainbow"><img src="./icons-etch/icons8-rainbow-64 (1).png" width="32"></div>
+                <div class="tool eraser"><img src="./icons-etch/icons8-erase-64.png" width="32"></div>
+                <div class="tool clear"><img src="./icons-etch/icons8-clear-symbol-64 (1).png" width="32"></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="board-container">
+                <div class="board"></div>
+            </div>
+        </div>
     </div>
     <!--footer-->
+    <div class="footer"></div>
     <script src="./app.js"></script>
 </body>
 </html>

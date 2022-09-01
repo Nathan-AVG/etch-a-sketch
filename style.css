@@ -1,0 +1,90 @@
+@font-face {
+    font-family: pixel;
+    src: url(./rsehandwritingpi/RSEHandwritingPixel.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #00031d;
+    color: white;
+}
+/**/
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    font-family: pixel;
+    font-size: 100px;
+}
+/**/
+/**/
+/*.left, .right{
+    border: 1px solid white;
+}*/
+
+.main{
+    display: flex;
+    background-image: url(./icons-etch/1138740.png);
+    background-size: cover;
+}
+/*left*/
+.left{
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 500px;
+    padding: 100px;
+}
+
+.tools{
+    display: flex;
+    flex-direction: column ;
+    flex-shrink: 0;
+    align-items: center;
+
+    gap: 30px;
+    padding: 50px;
+
+    border: 5px solid white;
+    background-color: #00031d;
+    border-radius: 10px;
+}
+
+.tool:hover{
+    transform: scale(1.2);
+    transition: all .3s ease;
+}
+/**/
+
+/*right*/
+.right{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    height: 700px;
+}
+
+.board-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid white;
+    height: 600px;
+    width: 600px;
+    background-color: rgba(255, 255, 255, 0.882);
+}
+
+.board{
+    height: 580px;
+    width: 580px;
+    background-color: white;
+}
