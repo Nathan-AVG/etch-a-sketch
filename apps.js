@@ -22,83 +22,81 @@ let colorUser = 'white';
 
 
 //to detect click and hold
-board.addEventListener('mousedown', ()=>{clickstatus = true});
-board.addEventListener('mouseup', ()=>{clickstatus = false});
+board.addEventListener('mousedown', () => { clickstatus = true });
+board.addEventListener('mouseup', () => { clickstatus = false });
 
 //color button
-color.addEventListener('click', function(){
+color.addEventListener('click', function () {
     lighten();
+    window.removeEventListener('mouseover', randomizer);
     this.classList.add('selected'); //to darken
     let colorUser = pallette.value;
     changecolor(colorUser);
-    pallette.oninput = (()=>{
+    pallette.oninput = (() => {
         let colorUser = pallette.value;
         changecolor(colorUser);
     });
 });
 
-rainbow.addEventListener('click', function(){
+rainbow.addEventListener('click', function () {
     lighten();
     this.classList.add('selected'); //to darken
-    window.addEventListener('mouseover', ()=>{ //to change everytime we change position
-        randomnumber = Math.random() * 360;
-        console.log(randomnumber);
-        changecolor(`hsl(${randomnumber}, 100%, 50%)`);
-    })
+    window.addEventListener('mouseover', randomizer);
 });
 
 //eraser button
-eraser.addEventListener('click', function(){
+eraser.addEventListener('click', function () {
     lighten();
+    window.removeEventListener('mouseover', randomizer);
     this.classList.add('selected'); //to darken
     changecolor('white');
 });
 
 //clear button
-clear.addEventListener('click', function(){
+clear.addEventListener('click', function () {
     clearScreen();
     let value = inputSlider.value;
     drawgrids();
 });
 
 //range slider display
-inputSlider.oninput = (()=>{
+inputSlider.oninput = (() => {
     let value = inputSlider.value;
     sliderValue.textContent = value;
-    sliderValue.style.left = ((value/64 * 100)- 9) + "%";
+    sliderValue.style.left = ((value / 64 * 100) - 9) + "%";
     sliderValue.classList.add('show');
 });
 
-inputSlider.onblur = (()=>{
+inputSlider.onblur = (() => {
     sliderValue.classList.remove('show');
 })
 
 //change grid size
-inputSlider.onchange = (()=>{
+inputSlider.onchange = (() => {
     clearScreen();
     drawgrids();
 });
 
 //function
-function lighten(){ //lightens every other tool button
+function lighten() { //lightens every other tool button
     tools.forEach(tool => tool.classList.remove('selected'));
 }
 
-function clearScreen(){
+function clearScreen() {
     let value = inputSlider.value;
 
-    while(board.firstChild){
+    while (board.firstChild) {
         const lastElement = board.lastChild;
         board.removeChild(lastElement);
-    } 
+    }
 }
 
-function drawgrids(){
+function drawgrids() {
     const height = boardheight.offsetHeight;
     let value = inputSlider.value;
-    const magicnum = (height/value);
+    const magicnum = (height / value);
 
-    for(let i = 0; i < value**2; i++){
+    for (let i = 0; i < value ** 2; i++) {
         const newBoard = document.createElement('div');
         newBoard.addEventListener('mouseover', drawcolor); //important
         newBoard.className = 'block';
@@ -108,14 +106,20 @@ function drawgrids(){
     }
 }
 
-function drawcolor(){
-    if(clickstatus){
+function drawcolor() {
+    if (clickstatus) {
         this.style.background = colorUser; //IMPORTANT
-    } 
+    }
 }
 
-function changecolor(choice){
+function changecolor(choice) {
     colorUser = choice;
+}
+
+function randomizer() {
+    randomnumber = Math.random() * 360;
+    console.log(randomnumber);
+    changecolor(`hsl(${randomnumber}, 100%, 50%)`);
 }
 
 
