@@ -1,0 +1,123 @@
+@font-face {
+    font-family: cool;
+    src: url(../josefin-sans-font/JosefinSansRegular-x3LYV.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cool;
+}
+
+html, body{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(185, 143, 225);
+}
+
+.range{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 80px;
+    width: 380px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px 65px 0 45px;
+}
+
+.range .sliderValue{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.range .sliderValue span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    color: white;
+    transform: scale(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease-in-out;
+    font-weight: 500;
+    top: -40px;
+    z-index: 2;
+}
+
+.range .sliderValue span.show{
+    transform: scale(1);
+}
+
+.range .sliderValue span:after{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "";
+    
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    background: rgb(185, 143, 225);
+    transform: rotate(45deg);
+    border: 3px solid white;
+    z-index: -1;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.range .field{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.range .field .value{
+    position: absolute;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(185, 143, 225);
+}
+
+.range .field .value.left{
+    left: -8%;
+}
+
+.range .field .value.right{
+    right: -15%;
+}
+
+.range .field input{
+    appearance: none;
+    height: 3px;
+    width: 100%;
+    background-color: grey;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.range .field input::-webkit-slider-thumb{
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgb(185, 143, 225);
+}
+
+.range .field input::-webkit-progress-value{
+    background-color: rgb(185, 143, 225);
+}

@@ -1,20 +1,26 @@
 @font-face {
     font-family: pixel;
-    src: url(./rsehandwritingpi/RSEHandwritingPixel.ttf);
+    src: url(./fonts/RSEHandwritingPixel.ttf);
 }
 
-*{
+@font-face {
+    font-family: cool;
+    src: url(./fonts/josefin-sans-font/JosefinSansRegular-x3LYV.ttf);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #00031d;
     color: white;
 }
+
 /**/
-.heading{
+.heading {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,30 +29,34 @@ body{
     font-family: pixel;
     font-size: 100px;
 }
+
 /**/
 /**/
 /*.left, .right{
     border: 1px solid white;
 }*/
 
-.main{
+.main {
     display: flex;
+    flex-wrap: wrap;
     background-image: url(./icons-etch/1138740.png);
     background-size: cover;
 }
-/*left*/
-.left{
 
+/*left*/
+.left {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
     width: 500px;
-    padding: 100px;
+    padding: 1%;
+    gap: 10%;
 }
 
-.tools{
+.tools {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     flex-shrink: 0;
     align-items: center;
 
@@ -58,21 +68,130 @@ body{
     border-radius: 10px;
 }
 
-.tool:hover{
-    transform: scale(1.2);
+.tool:hover {
+    transform: scale(1.4);
     transition: all .3s ease;
+}
+
+.selected{
+    transform: scale(1.4);
+    filter: brightness(40%);
+}
+
+.range{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    height: 80px;
+    width: 80%;
+    border: 3px solid white;
+    background:#00031e;
+    border-radius: 10px;
+    color: white;
+    font-family: cool;
+    padding: 0px 65px 0 45px;
+}
+
+.range .sliderVal{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.range .sliderVal span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    color: white;
+    height: 45px;
+    width: 45px;
+    transform: scale(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease-in-out;
+    font-weight: 500;
+    top: -40px;
+    z-index: 2;
+}
+
+.range .sliderVal span.show{
+    transform: scale(1);
+}
+
+.range .sliderVal span:after{
+    content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    height: 45px;
+    width: 45px;
+    border: 3px solid white;
+    transform: rotate(45deg);
+    background-color: #00031d;
+    z-index: -1;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.range .field{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.range .field .value{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    position: absolute;
+}
+
+.range .field .value.max{
+    left: -12%;
+}
+
+.range .field .value.min{
+    right: -22%;
+}
+
+.range .field input{
+    appearance: none;
+    height: 3px;
+    background: grey;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+}
+
+.range .field input::-webkit-slider-thumb{
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: white;
 }
 /**/
 
 /*right*/
-.right{
+.right {
     display: flex;
+    padding-left: 5%;
     align-items: center;
     flex-grow: 1;
     height: 700px;
 }
 
-.board-container{
+.board-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,8 +202,15 @@ body{
     background-color: rgba(255, 255, 255, 0.882);
 }
 
-.board{
+.board {
     height: 580px;
     width: 580px;
+
     background-color: white;
+}
+
+.boardheight {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
