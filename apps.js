@@ -14,14 +14,21 @@ const inputSlider = document.querySelector('.size');
 const tools = document.querySelectorAll('.tool');
 
 //initialization
-let value = 32;
-draw();
+let clickstatus = false;//simulating not clicking()
 
+let value = 32;
+drawgrids();
 let colorUser = 'white';
 
+
+//to detect click and hold
+board.addEventListener('mousedown', ()=>{clickstatus = true});
+board.addEventListener('mouseup', ()=>{clickstatus = false});
+
+//color button
 color.addEventListener('click', function(){
     lighten();
-    this.classList.add('selected');
+    this.classList.add('selected'); //to darken
     let colorUser = pallette.value;
     changecolor(colorUser);
     pallette.oninput = (()=>{
@@ -30,12 +37,29 @@ color.addEventListener('click', function(){
     });
 });
 
+rainbow.addEventListener('click', function(){
+    lighten();
+    this.classList.add('selected'); //to darken
+    window.addEventListener('mouseover', ()=>{ //to change everytime we change position
+        randomnumber = Math.random() * 360;
+        console.log(randomnumber);
+        changecolor(`hsl(${randomnumber}, 100%, 50%)`);
+    })
+});
+
+//eraser button
 eraser.addEventListener('click', function(){
     lighten();
-    this.classList.add('selected');
+    this.classList.add('selected'); //to darken
     changecolor('white');
 });
 
+//clear button
+clear.addEventListener('click', function(){
+    clearScreen();
+    let value = inputSlider.value;
+    drawgrids();
+});
 
 //range slider display
 inputSlider.oninput = (()=>{
@@ -52,7 +76,7 @@ inputSlider.onblur = (()=>{
 //change grid size
 inputSlider.onchange = (()=>{
     clearScreen();
-    draw();
+    drawgrids();
 });
 
 //function
@@ -69,26 +93,29 @@ function clearScreen(){
     } 
 }
 
-function draw(){
+function drawgrids(){
     const height = boardheight.offsetHeight;
     let value = inputSlider.value;
     const magicnum = (height/value);
 
     for(let i = 0; i < value**2; i++){
         const newBoard = document.createElement('div');
-        newBoard.addEventListener('mouseover', drawcolor);
+        newBoard.addEventListener('mouseover', drawcolor); //important
         newBoard.className = 'block';
 
-        newBoard.style.cssText = `height: ${magicnum}px; width: ${magicnum}px; border: 1px solid black`;
+        newBoard.style.cssText = `height: ${magicnum}px; width: ${magicnum}px`;
         board.appendChild(newBoard);
     }
 }
 
 function drawcolor(){
-    this.style.background = colorUser
+    if(clickstatus){
+        this.style.background = colorUser; //IMPORTANT
+    } 
 }
 
 function changecolor(choice){
     colorUser = choice;
 }
+
 
